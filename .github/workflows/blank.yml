@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Execute PowerShell Script
-      run: .\path\to\your\script.ps1
+      run: .\script
       env:
         # Pass environment variables to the script if needed
         COMPUTER_IP: ${{ secrets.COMPUTER_IP }}
