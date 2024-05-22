@@ -1,0 +1,22 @@
+ # Define the commands for each session
+$Commands1 = {
+    java -jar "C:\wamp64\www\selenium-server-standalone-3.141.59.jar" -role hub
+}
+$Commands2 = {
+    cd C:\wamp64\www\photoadking_editor_automation
+    java -Dwebdriver.chrome.driver="C:\wamp64\www\chromedriver.exe" -jar "C:\wamp64\www\selenium-server-standalone-3.141.59.jar" -role webdriver -hub http://192.168.0.113:4444/register -port 4546
+}
+$Commands3 = {
+    cd C:\wamp64\www\photoadking_editor_automation
+    mvn clean test -Dfilename=Suite.xml
+}
+
+# Credentials
+$Username = "OB-7"
+$Password = ConvertTo-SecureString "OB_2020" -AsPlainText -Force
+$Credential = New-Object System.Management.Automation.PSCredential($Username, $Password)
+
+# Execute the commands on the remote machine
+Invoke-Command -ComputerName "192.168.0.113" -Credential $Credential -ScriptBlock $Commands1
+Invoke-Command -ComputerName "192.168.0.113" -Credential $Credential -ScriptBlock $Commands2
+Invoke-Command -ComputerName "192.168.0.113" -Credential $Credential -ScriptBlock $Commands3
