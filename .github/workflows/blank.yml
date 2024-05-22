@@ -1,0 +1,21 @@
+name: Remote Script Execution
+
+on: 
+  push:
+    branches:
+      - main  # Or any other branch as per your workflow
+
+jobs:
+  deploy:
+    runs-on: windows-latest  # Make sure the runner can execute PowerShell scripts
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+
+    - name: Execute PowerShell Script
+      run: .\path\to\your\script.ps1
+      env:
+        # Pass environment variables to the script if needed
+        COMPUTER_IP: ${{ secrets.COMPUTER_IP }}
+        USER_NAME: ${{ secrets.USER_NAME }}
+        PASSWORD: ${{ secrets.PASSWORD }}
