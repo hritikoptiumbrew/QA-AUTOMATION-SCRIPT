@@ -17,9 +17,9 @@ jobs:
     - name: Start Selenium Hub
       uses: appleboy/ssh-action@v0.1.5
       with:
-        host: ${{ secrets.192.168.0.113 }}
-        username: ${{ secrets.OB-7 }}
-        password: ${{ secrets.OB_2020 }}
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        password: ${{ secrets.REMOTE_PASSWORD }}
         port: 22 # Default SSH port
         script: |
           java -jar "C:\\wamp64\\www\\selenium-server-standalone-3.141.59.jar" -role hub
